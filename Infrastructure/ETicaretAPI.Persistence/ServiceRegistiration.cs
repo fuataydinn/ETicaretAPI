@@ -1,19 +1,16 @@
-﻿using ETicaretAPI.Application.Abstraction;
-using ETicaretAPI.Persistence.Concrete;
+﻿using ETicaretAPI.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ETicaretAPI.Persistence
 {
     public static class ServiceRegistiration
     {
+        //Ioc container'a data yollamak için bu sınıfı kullanıyoruz
         public static void AddPersistanceServices(this IServiceCollection services) 
         {
-        services.AddSingleton<IProductService,ProductService>();
+         services.AddDbContext<ETicaretAPIDbContext>(x => x.UseNpgsql(Configuration.ConnectionString));
         }
     }
 }
