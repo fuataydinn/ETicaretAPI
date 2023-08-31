@@ -11,14 +11,14 @@ namespace ETicaretAPI.Persistence
         //Ioc container'a data yollamak için bu sınıfı kullanıyoruz
         public static void AddPersistanceServices(this IServiceCollection services) 
         {
-            services.AddDbContext<ETicaretAPIDbContext>(x => x.UseNpgsql(Configuration.ConnectionString),ServiceLifetime.Singleton);
+            services.AddDbContext<ETicaretAPIDbContext>(x => x.UseNpgsql(Configuration.ConnectionString));
             //Repositories
-            services.AddSingleton<ICustomerReadRepository,CustomerReadRepository>();
-            services.AddSingleton<ICustomerWriteRepository,CustomerWriteRepository>();
-            services.AddSingleton<IOrderReadRepository,OrderReadRepository>();
-            services.AddSingleton<IOrderWriteRepository,OrderWriteRepository>();
-            services.AddSingleton<IProductReadRepository,ProductReadRepository>();
-            services.AddSingleton<IProductWriteRepository,ProductWriteRepository>();
+            services.AddScoped<ICustomerReadRepository,CustomerReadRepository>();
+            services.AddScoped<ICustomerWriteRepository,CustomerWriteRepository>();
+            services.AddScoped<IOrderReadRepository,OrderReadRepository>();
+            services.AddScoped<IOrderWriteRepository,OrderWriteRepository>();
+            services.AddScoped<IProductReadRepository,ProductReadRepository>();
+            services.AddScoped<IProductWriteRepository,ProductWriteRepository>();
             //Repositories
         }
     }
